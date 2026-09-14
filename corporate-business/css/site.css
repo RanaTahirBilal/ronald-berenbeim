@@ -70,7 +70,7 @@
   display:flex; flex-direction:column; transition:box-shadow .25s, transform .25s;
 }
 .place-card:hover{ box-shadow:0 14px 40px rgba(20,32,43,.12); transform:translateY(-3px) }
-.place-img{ aspect-ratio:4/3; overflow:hidden; background:var(--rb-paper) }
+.place-img{ aspect-ratio:16/9; overflow:hidden; background:var(--rb-ink) }
 .place-img img{ width:100%; height:100%; object-fit:cover; display:block }
 .place-body{ padding:20px 20px 22px }
 .place-year{
@@ -122,15 +122,25 @@ html,body{ overflow-x:hidden }
    banner.jpg and booking-img.jpg are grey plates with "1920 x 1000" printed
    on them. Until real photography exists, these bands carry weight on their
    own rather than shipping a placeholder to a live client site. */
+/* The hero photograph is mirrored so the subject sits in the right third and
+   the empty corridor wall falls behind the type block. The gradient is opaque
+   on the left, where the h1 sits, and thins out to the right so the picture is
+   actually visible. Contrast on the h1 is pixel-sampled below, not assumed. */
 .banner-area{
-  background-image:none !important;
-  background:
-    radial-gradient(120% 90% at 80% 10%, rgba(142,47,60,.30), transparent 62%),
-    linear-gradient(160deg, #14202B 0%, #1B2A38 55%, #22323F 100%) !important;
+  background-image:
+    linear-gradient(95deg, rgba(9,14,20,.95) 0%, rgba(9,14,20,.92) 34%, rgba(10,17,24,.72) 56%, rgba(12,20,28,.42) 78%, rgba(14,22,30,.34) 100%),
+    url("../img/hero-corridor.jpg") !important;
+  background-size:cover, cover !important;
+  background-position:center, 58% 42% !important;
+  background-repeat:no-repeat, no-repeat !important;
 }
 .booking-area{
-  background-image:none !important;
-  background:linear-gradient(100deg, #8E2F3C 0%, #6E2430 100%) !important;
+  background-image:
+    linear-gradient(100deg, rgba(142,47,60,.90) 0%, rgba(110,36,48,.94) 100%),
+    url("../img/band-stairwell.jpg") !important;
+  background-size:cover, cover !important;
+  background-position:center, center 30% !important;
+  background-repeat:no-repeat, no-repeat !important;
 }
 .booking-area .inner-text h4,
 .booking-area .inner-text h2{ color:#fff !important }
@@ -150,6 +160,27 @@ html,body{ overflow-x:hidden }
 /* wow.js starts elements invisible; if the script fails they must not stay that way */
 .no-js .wow, .wow.animated{ visibility:visible !important }
 
-/* place cards run typographic until the photography exists */
 .place-card{ border-top:3px solid var(--rb-acc) }
-.place-body{ padding:26px 22px 28px }
+.place-body{ padding:22px 22px 26px }
+
+
+/* ---------- photography added after the first build ----------------------
+   Ten generated portraits. Everything factual on this page comes from the
+   press release; the pictures do not, and the note under the places grid
+   says so on the page rather than only in this comment. */
+
+.places-note{
+  margin:6px 0 0; font-size:12.5px; line-height:1.6; color:var(--rb-muted);
+  max-width:70ch; border-top:1px solid var(--rb-line); padding-top:16px;
+}
+
+.side-fig, .strip-fig{ margin:0; overflow:hidden; background:var(--rb-ink) }
+.side-fig img, .strip-fig img{ width:100%; height:100%; object-fit:cover; display:block }
+.side-fig{ aspect-ratio:4/3; border-bottom:3px solid var(--rb-acc) }
+.works-head{ margin-bottom:6px }
+.strip-fig{ aspect-ratio:21/9; margin-bottom:clamp(34px,4.5vw,58px); border-bottom:3px solid var(--rb-acc) }
+
+@media (max-width:991px){
+  .side-fig{ aspect-ratio:16/9 }
+  .strip-fig{ aspect-ratio:16/9 }
+}
